@@ -5,11 +5,9 @@ import cmd
 
 class MyCommand(cmd.Cmd):
     """ Begin Console CLI Function """
-    def do_EOF(self, arg):
+    def do_EOF(self, line_arg):
         """ Gracefully Ends The Program """
         print("")
-        if arg:
-            pass
         return True
 
 # ALLOWs THE FUNC() TO RUN.

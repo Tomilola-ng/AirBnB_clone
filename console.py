@@ -16,11 +16,11 @@ class MyCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """ Ignore this request, when no arguments """
-        pass
+        """ Print default, when no arguments """
+        print('Empty Line Command')
 
     def default(self, line):
-        """ Gracefully Catch Errors """
+        """ Gracefully Catch Error or Unknown Commands """
         print(f'Invalid Command: {line}')
 
 # ALLOWs THE FUNC() TO RUN.

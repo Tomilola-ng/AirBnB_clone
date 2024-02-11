@@ -18,11 +18,12 @@ class BaseModel:
                 self.created_at = datetime.fromisoformat(kwargs["created_at"])
             if "updated_at" in kwargs:
                 self.updated_at = datetime.fromisoformat(kwargs["updated_at"])
-        else:
+        if not kwargs:
             """ CREATEs NEW OBJECT ENTIRELY """
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """  Rename default name """
@@ -32,6 +33,7 @@ class BaseModel:
     def save(self):
         """ Updates the `updated_at` time"""
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """ Working Smarter and presenting cleaner code """

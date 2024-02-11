@@ -8,12 +8,33 @@ from models.base_model import BaseModel
 class TestBaseModel(unittest.TestCase):
     """ FUNCTION TO TEST BASEMODEL """
 
-    def test_init(self):
-        """Tests that BaseModel instance is initialized correctly."""
+    def test_init_empty_kwargs(self):
+        """Tests that __init__ creates a new instance with unique ID and timestamps."""
         model = BaseModel()
         self.assertIsInstance(model.id, str)
         self.assertIsInstance(model.created_at, datetime)
         self.assertIsInstance(model.updated_at, datetime)
+
+    def test_init_with_kwargs(self):
+        """Tests that __init__ re-creates an instance from a dictionary."""
+        data = {
+            "id": "abcd-1234",
+            "created_at": "2024-02-11T20:22:00.000000",
+            "updated_at": "2024-02-12T10:30:00.000000",
+        }
+        model = BaseModel(**data)
+        self.assertEqual(model.id, data["id"])
+        self.assertEqual(model.created_at, datetime.fromisoformat(data["created_at"]))
+        self.assertEqual(model.updated_at, datetime.fromisoformat(data["updated_at"]))
+
+    def test_init_with_invalid_datetime_format(self):
+        """Tests that __init__ raises an error for invalid datetime format."""
+        data = {
+            "created_at": "invalid_format",
+            "updated_at": "another_invalid_format",
+        }
+        with self.assertRaises(ValueError):
+            BaseModel(**data)
 
     def test_str(self):
         """Tests the string representation of a BaseModel instance."""

@@ -11,9 +11,18 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """ Begin initialization """
 
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            """ EDIT INSTANCE RATHER THAN CREATE NEW """
+            self.__dict__.update(kwargs)
+            if "created_at" in kwargs:
+                self.created_at = datetime.fromisoformat(kwargs["created_at"])
+            if "updated_at" in kwargs:
+                self.updated_at = datetime.fromisoformat(kwargs["updated_at"])
+        else:
+            """ CREATEs NEW OBJECT ENTIRELY """
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """  Rename default name """

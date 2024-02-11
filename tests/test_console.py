@@ -1,4 +1,4 @@
 #!/usr/bin/python3
-""" ALL TESTSCASES for console.py """
+""" MY TESTCASE FOR THE CONSOLE """
 
 

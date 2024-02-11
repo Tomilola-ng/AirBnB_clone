@@ -3,7 +3,7 @@
 
 import io
 import unittest
-from ..console import MyCommand
+from console import MyCommand
 from contextlib import redirect_stdout
 
 class TestMyCommand(unittest.TestCase):

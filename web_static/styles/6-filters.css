@@ -30,6 +30,8 @@
 .filters .amenities {
   height: 100%;
   width: 25%;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .filters .locations h3,
@@ -55,10 +57,16 @@
 }
 .filters .locations .popover,
 .filters .amenities .popover {
+  z-index: 20;
   display: none;
   background-color: #fafafa;
   width: 100%;
   border: 1px solid #dddddd;
+  border-radius: 4px;
+  position: absolute;
+  top: 100%;
+  box-sizing: border-box;
+  padding: 15px;
 }
 
 .filters .locations .popover li,
